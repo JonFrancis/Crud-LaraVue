@@ -32,7 +32,7 @@
         v-model="users.Cellphone">
     </div>
     <button type="button" @click="editUser" class="btn btn-outline-success"> Edit User </button>
-    <button type="button" @click="cancelButton" class="btn btn-outline-success"> Cancel Edit </button>
+    <button type="button" @click="cancelButton" class="btn btn-outline-warning mx-2"> Cancel Edit </button>
   </form>
 </template>
 
