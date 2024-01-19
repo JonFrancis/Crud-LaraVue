@@ -1,15 +1,15 @@
 <template>
   <HeaderPage></HeaderPage>
-  <h2 class="my-2"> Add a new user </h2>
+  <h2 class="my-2"> Editing user = {{users.Username}}</h2>
   <form class="container">
     <div class="form-group my-3">
       <label for="exampleInputEmail1">Username</label>
-      <input type="text" class="form-control" name="username" required placeholder="Enter username"
+      <input type="text" disabled class="form-control" name="username" required placeholder="Enter username"
         v-model="users.Username">
     </div>
     <div class="form-group my-3">
       <label for="exampleInputEmail1">Password</label>
-      <input type="password" class="form-control" name="password" required placeholder="Enter Password"
+      <input type="password" disabled class="form-control" name="password" required placeholder="Enter Password"
         v-model="users.Password">
     </div>
     <div class="form-group my-3">
