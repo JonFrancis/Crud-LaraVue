@@ -1,5 +1,8 @@
+<!-- Home Page -->
 <template>
+  <!-- Adding Header -->
   <HeaderPage></HeaderPage>
+  <!-- Table of users -->
   <div class="container-fluid my-3" v-if="users.length != 0">
     <h2 class="my-2"> All Users </h2>
     <table class="table table-striped">
@@ -55,15 +58,10 @@ export default {
     return {
       users: [],
       error: "",
-      items: [
-          { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-          { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-          { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-          { age: 38, first_name: 'Jami', last_name: 'Carney' }
-        ],
     }
   },
   methods: {
+    //Get Users, or message of empty database
     async fetchUsers() {
       try {
         const result = await axios.get("http://127.0.0.1:8000/api/allusers")
@@ -72,6 +70,7 @@ export default {
         this.error = error.response.data.message
       }
     },
+    //Confirmation before delete, and message that user don't exist if delete fails
     async deleteUser(id) {
       let confirmation = confirm("Are you sure you want to delete this user?")
       if (confirmation) {
@@ -84,14 +83,14 @@ export default {
       }
     }
   },
+  //Mount
   mounted() {
     this.fetchUsers()
   }
 }
 </script>
 
-<!-- Add "scoped" atthibute to limit CSS to this component only -->
-
+<!-- Changing the font in project -->
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300;1,900&display=swap');
   h2{

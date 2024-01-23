@@ -1,33 +1,40 @@
+<!-- Edit Page -->
 <template>
+
+  <!-- Adding Header -->
   <HeaderPage></HeaderPage>
+
+  <!-- Showing what User will be edited -->
   <h2 class="my-2"> Editing user = {{users.Username}}</h2>
+
+  <!-- Showing all data of User in Database -->
   <form class="container">
     <div class="form-group my-3">
-      <label for="exampleInputEmail1">Username</label>
+      <label for="InputUsername">Username</label>
       <input type="text" disabled class="form-control" name="username" required placeholder="Enter username"
         v-model="users.Username">
     </div>
     <div class="form-group my-3">
-      <label for="exampleInputEmail1">Password</label>
+      <label for="InputPassword">Password</label>
       <input type="password" disabled class="form-control" name="password" required placeholder="Enter Password"
         v-model="users.Password">
     </div>
     <div class="form-group my-3">
-      <label for="exampleInputEmail1">First Name</label>
+      <label for="InputFirst_Name">First Name</label>
       <input type="text" class="form-control" name="first_name" required placeholder="Enter your first name"
         v-model="users.First_Name">
     </div>
     <div class="form-group my-3">
-      <label for="exampleInputEmail1">Last Name</label>
+      <label for="InputLast_Name">Last Name</label>
       <input type="text" class="form-control" name="last_name" required placeholder="Enter your last name"
         v-model="users.Last_Name">
     </div>
     <div class="form-group my-3">
-      <label for="exampleInputEmail1">Age</label>
+      <label for="InputAge">Age</label>
       <input type="number" class="form-control" name="age" required placeholder="Enter your age" v-model="users.Age">
     </div>
     <div class="form-group my-3">
-      <label for="exampleInputEmail1">Cellphone</label>
+      <label for="InputCellphone">Cellphone</label>
       <input type="number" class="form-control" name="cellphone" required placeholder="Enter your cellphone"
         v-model="users.Cellphone">
     </div>
@@ -37,6 +44,7 @@
 </template>
 
 <script>
+
 import HeaderPage from './HeaderPage.vue';
 import axios from 'axios'
 
@@ -53,9 +61,12 @@ export default {
     }
   },
   methods: {
+
+    //Method for display validation errors
     displayErrors() {
       let errorMessage = "Validation error:\n";
 
+      //Making the message prettier
       for (const field in this.validationErrors) {
         if (Object.prototype.hasOwnProperty.call(this.validationErrors, field)) {
           errorMessage += `${field}: ${this.validationErrors[field][0]}\n`;
@@ -64,6 +75,8 @@ export default {
 
     alert(errorMessage);
     },
+
+    //Method for Edit the User
     async editUser() {
       let confirmation = confirm("Are you sure you want to edit this user?")
       if(confirmation) {
@@ -82,6 +95,8 @@ export default {
           }
         } catch (error) {
           if (error.response && error.response.status === 422) {
+
+            //Calling Validation errors
             this.validationErrors = error.response.data.errors;
             this.displayErrors();
           } else {
@@ -90,6 +105,8 @@ export default {
         }
       }
     },
+
+    //Cancel Button with confirmation
     async cancelButton() {
       let confirmation = confirm("Are you sure you want to cancel the edit of this user?")
       if (confirmation) {
@@ -97,14 +114,16 @@ export default {
       }
     },
   },
+
+  //Mount Edit Page
   async mounted() {
     const result = await axios.get(`http://127.0.0.1:8000/api/allusers/${this.$route.params.id}`)
     this.users = result.data.user
-    console.log(this.users.Username)
   },
 }
 </script>
 
+<!-- Changing the font -->
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300;1,900&display=swap');
   label{

@@ -1,6 +1,11 @@
+<!-- Add Page -->
 <template>
+
+  <!-- Adding Header -->
   <HeaderPage></HeaderPage>
   <h2 class="my-2"> Add a new user </h2>
+
+  <!-- Form to add the User -->
   <form class="container">
     <div class="form-group my-3">
       <label for="exampleInputEmail1">Username</label>
@@ -46,6 +51,7 @@ export default {
         password: "",
         firstName: "",
         lastName: "",
+        //Age is optional, but it need to have something so errors are not called
         age: 0,
         cellphone: "",
       },
@@ -53,9 +59,12 @@ export default {
     }
   },
   methods: {
+
+    //Method for display validation errors
     displayErrors() {
       let errorMessage = "Validation error:\n";
 
+      //Making the message prettier
       for (const field in this.validationErrors) {
         if (Object.prototype.hasOwnProperty.call(this.validationErrors, field)) {
           errorMessage += `${field}: ${this.validationErrors[field][0]}\n`;
@@ -64,6 +73,7 @@ export default {
 
     alert(errorMessage);
   },
+    //Method to add user in Database
     async addUser() {
       try {
         const result = await axios.post("http://127.0.0.1:8000/api/allusers", {
@@ -80,6 +90,8 @@ export default {
         }
       } catch (error) {
         if (error.response && error.response.status === 422) {
+
+          //Calling Validation errors
           this.validationErrors = error.response.data.errors;
           this.displayErrors();
         } else {

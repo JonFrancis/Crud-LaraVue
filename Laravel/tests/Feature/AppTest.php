@@ -10,6 +10,7 @@ use Tests\TestCase;
 
 class AllUsersApiTest extends TestCase
 {
+  //Test adding to Database
   public function testStore()
   {
     $data =[
@@ -23,12 +24,15 @@ class AllUsersApiTest extends TestCase
     $response = $this->post('/api/allusers',$data);
     $response->assertStatus(200);
   }
+  //Test to List all Users
   public function testList()
   {
     $response = $this->get('/api/allusers');
     $response->assertStatus(200);
   }
 
+  //Test adding to Show one User
+  //Creating one and Posting in Database First
   public function testShow()
   {
     $data =[
@@ -48,6 +52,8 @@ class AllUsersApiTest extends TestCase
     $response->assertStatus(200);
   }
 
+  //Test adding to Edit one User
+  //Creating one and Posting in Database First
   public function testEdit()
   {
     $data =[
@@ -63,6 +69,7 @@ class AllUsersApiTest extends TestCase
     $responseData = $postUser->decodeResponseJson();
     $userId = $responseData['userId'];
 
+    //Updating
     $updatedData =[
       "Username"=> "Jota",
       "Password"=> "123123",
@@ -75,6 +82,8 @@ class AllUsersApiTest extends TestCase
     $response->assertStatus(200);
   }
 
+  //Test to Delete one User
+  //Creating one and Posting in Database First
   public function testDelete()
   {
     $data =[

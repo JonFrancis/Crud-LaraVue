@@ -1,3 +1,4 @@
+<!-- Header to all pages with Home link and Add link -->
 <template>
     <header>
         <nav>
@@ -20,6 +21,7 @@ export default {
 }
 </script>
 
+<!-- Changing the font in project, and making nav bar better -->
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300;1,900&display=swap');
 header {

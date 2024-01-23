@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Validator;
 
 class AllUsersController extends Controller
 {
+  //Index page or Home page
+  //If the database don't have users(when the count function = 0), it will print 'No user found in database'
+  //If database have 1 or more users it will print all of them
     public function index()
     {
         $allusers = AllUsers::all();
@@ -27,6 +30,8 @@ class AllUsersController extends Controller
         }
     }
 
+    //When add an user validator will check, First Name, Last name and Cellphone
+    //If it fails the validator message is send to front
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -72,6 +77,8 @@ class AllUsersController extends Controller
         }
     }
 
+    //Show function is not used by the routes
+    //But it allows the access of 1 specific users instead of showing all of them
     public function show($id)
     {
         $allusers = AllUsers::find($id);
@@ -89,6 +96,7 @@ class AllUsersController extends Controller
         }
     }
 
+    //Edit function return the user to complete the gaps in front end
     public function edit($id)
     {
         $allusers = AllUsers::find($id);
@@ -106,6 +114,8 @@ class AllUsersController extends Controller
         }
     }
 
+    //Update function replace the data updated in database
+    //Also have a validator
     public function update(Request $request, int $id)
     {
         $validator = Validator::make($request->all(), [
@@ -151,6 +161,7 @@ class AllUsersController extends Controller
         }
     }
 
+    //Destroy just delete the user chosen
     public function destroy($id)
     {
         $allusers = AllUsers::find($id);
