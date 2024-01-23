@@ -1,7 +1,7 @@
 # Crud-LaraVue
 The project uses Laravel, Vue and mysql.
 
-## Installations=
+## Installations
 
 XAMPP;
 
@@ -65,3 +65,13 @@ Laravel: 8.75
 Php: 8.2.12
 
 Vue: 5.0.8
+
+## Test cases Laravel
+
+There are some test cases for laravel routes, to run:
+
+```sh
+php artisan test
+```
+
+With terminal inside the laravel folder named "Laravel";
